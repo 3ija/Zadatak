@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,13 +10,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Profesor implements Korisnik {
+@PrimaryKeyJoinColumn(name="id")  
+public class Profesor extends Korisnik {
 	
-	@Id
-	@Column(name = "PROFESOR_ID")
-	private long id;
 	private String ime;
 	private String prezime;
 	@Enumerated(EnumType.STRING)
@@ -26,63 +26,69 @@ public class Profesor implements Korisnik {
 	@JoinColumn(name = "ODSEK_ID")
 	private Odsek odsek;
 	
-	
-	
 	public Profesor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Profesor(long id, String ime, String prezime, Zvanje zvanje, Date zasnivanjeRadnogOdnosa) {
 
+	public Profesor(long id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Profesor(String ime, String prezime, Zvanje zvanje, Date zasnivanjeRadnogOdnosa, Odsek odsek) {
 		super();
-		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.zvanje = zvanje;
 		this.zasnivanjeRadnogOdnosa = zasnivanjeRadnogOdnosa;
-	}
-	
-	public Odsek getOdsek() {
-		return odsek;
-	}
-	public void setOdsek(Odsek odsek) {
 		this.odsek = odsek;
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public String getIme() {
 		return ime;
 	}
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+
 	public String getPrezime() {
 		return prezime;
 	}
+
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
+
 	public Zvanje getZvanje() {
 		return zvanje;
 	}
+
 	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
+
 	public Date getZasnivanjeRadnogOdnosa() {
 		return zasnivanjeRadnogOdnosa;
 	}
+
 	public void setZasnivanjeRadnogOdnosa(Date zasnivanjeRadnogOdnosa) {
 		this.zasnivanjeRadnogOdnosa = zasnivanjeRadnogOdnosa;
 	}
+
+	public Odsek getOdsek() {
+		return odsek;
+	}
+
+	public void setOdsek(Odsek odsek) {
+		this.odsek = odsek;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		int result = super.hashCode();
 		result = prime * result + ((ime == null) ? 0 : ime.hashCode());
 		result = prime * result + ((odsek == null) ? 0 : odsek.hashCode());
 		result = prime * result + ((prezime == null) ? 0 : prezime.hashCode());
@@ -90,15 +96,16 @@ public class Profesor implements Korisnik {
 		result = prime * result + ((zvanje == null) ? 0 : zvanje.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
+		if (!super.equals(obj))
+			return false;
 		if (!(obj instanceof Profesor))
 			return false;
 		Profesor other = (Profesor) obj;
-		if (id != other.id)
-			return false;
 		if (ime == null) {
 			if (other.ime != null)
 				return false;
@@ -123,12 +130,13 @@ public class Profesor implements Korisnik {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Profesor [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", zvanje=" + zvanje
-				+ ", zasnivanjeRadnogOdnosa=" + zasnivanjeRadnogOdnosa + ", odsek=" + odsek + "]";
+		return "Profesor [ime=" + ime + ", prezime=" + prezime + ", zvanje=" + zvanje + ", zasnivanjeRadnogOdnosa="
+				+ zasnivanjeRadnogOdnosa + ", odsek=" + odsek + "]";
 	}
-
+	
 	
 	
 	

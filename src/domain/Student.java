@@ -10,10 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity
-public class Student implements Korisnik {
-	@Id
+@Entity 
+@PrimaryKeyJoinColumn(name="id")  
+public class Student extends Korisnik {
+	
 	private String indeks;
 	private String ime;
 	private String prezime;
@@ -31,6 +33,12 @@ public class Student implements Korisnik {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public Student(long id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
 	public Student(String indeks, String ime, String prezime, Date datumRodjenja, Smer smer) {
 		super();
 		this.indeks = indeks;
@@ -40,57 +48,74 @@ public class Student implements Korisnik {
 		this.smer = smer;
 		this.polozeniIspiti = new HashSet<Ispit>();
 	}
+
 	public String getIndeks() {
 		return indeks;
 	}
+
 	public void setIndeks(String indeks) {
 		this.indeks = indeks;
 	}
+
 	public String getIme() {
 		return ime;
 	}
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+
 	public String getPrezime() {
 		return prezime;
 	}
+
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
+
 	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
+
 	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
+
 	public Smer getSmer() {
 		return smer;
 	}
+
 	public void setSmer(Smer smer) {
 		this.smer = smer;
 	}
+
 	public Set<Ispit> getPolozeniIspiti() {
 		return polozeniIspiti;
 	}
+
 	public void setPolozeniIspiti(Set<Ispit> polozeniIspiti) {
 		this.polozeniIspiti = polozeniIspiti;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((datumRodjenja == null) ? 0 : datumRodjenja.hashCode());
 		result = prime * result + ((ime == null) ? 0 : ime.hashCode());
 		result = prime * result + ((indeks == null) ? 0 : indeks.hashCode());
+		result = prime * result + ((polozeniIspiti == null) ? 0 : polozeniIspiti.hashCode());
 		result = prime * result + ((prezime == null) ? 0 : prezime.hashCode());
 		result = prime * result + ((smer == null) ? 0 : smer.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
+		if (!super.equals(obj))
+			return false;
 		if (!(obj instanceof Student))
 			return false;
 		Student other = (Student) obj;
@@ -109,6 +134,11 @@ public class Student implements Korisnik {
 				return false;
 		} else if (!indeks.equals(other.indeks))
 			return false;
+		if (polozeniIspiti == null) {
+			if (other.polozeniIspiti != null)
+				return false;
+		} else if (!polozeniIspiti.equals(other.polozeniIspiti))
+			return false;
 		if (prezime == null) {
 			if (other.prezime != null)
 				return false;
@@ -121,11 +151,14 @@ public class Student implements Korisnik {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Student [indeks=" + indeks + ", ime=" + ime + ", prezime=" + prezime + ", datumRodjenja="
-				+ datumRodjenja + ", smer=" + smer + "]";
+				+ datumRodjenja + ", smer=" + smer + ", polozeniIspiti=" + polozeniIspiti + "]";
 	}
+	
+	
 	
 	
 }

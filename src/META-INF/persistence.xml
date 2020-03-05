@@ -8,6 +8,8 @@
 		<class>domain.Ispit</class>
 		<class>domain.Student</class>
 		<class>domain.Role</class>
+		<class>domain.Korisnik</class>
+		<class>domain.Nalog</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testing"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
