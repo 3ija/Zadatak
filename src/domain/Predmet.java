@@ -113,11 +113,12 @@ public class Predmet {
 		return "Predmet [id=" + id + ", naziv=" + naziv + ", esp=" + esp + ", smer=" + smer + "]";
 	}
 	
-	/*
+	
 	public void addSmer(Smer smer) {
 		this.smer.add(smer);
+	
 	}
-	*/
+	
 	
 	
 }

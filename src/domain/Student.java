@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity 
 @PrimaryKeyJoinColumn(name="id")  
@@ -19,6 +21,8 @@ public class Student extends Korisnik {
 	private String indeks;
 	private String ime;
 	private String prezime;
+	
+	@Temporal(TemporalType.DATE)
 	private Date datumRodjenja;
 	
 	@ManyToOne

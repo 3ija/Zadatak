@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @PrimaryKeyJoinColumn(name="id")  
@@ -20,6 +22,8 @@ public class Profesor extends Korisnik {
 	private String prezime;
 	@Enumerated(EnumType.STRING)
 	private Zvanje zvanje;
+
+	@Temporal(TemporalType.DATE)
 	private Date zasnivanjeRadnogOdnosa;
 	
 	@ManyToOne

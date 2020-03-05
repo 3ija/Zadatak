@@ -28,10 +28,11 @@ public class Smer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Smer(long id, String naziv) {
+	public Smer(long id, String naziv, Odsek odsek) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
+		this.odsek = odsek;
 	}
 	public long getId() {
 		return id;
